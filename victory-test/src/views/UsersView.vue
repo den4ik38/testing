@@ -2,7 +2,7 @@
   <main class="users-page">
       <div class="header">
         <div class="title">Users</div>
-      <button @click.prevent="$router.push('/create')" class="create__btn">Create user</button>
+      <MyButton @click.prevent="$router.push('/create')">Create user</MyButton>
       </div>
       <UserList :users="users" />
   </main>
@@ -11,11 +11,15 @@
 <script lang="ts">
 import { defineComponent, onMounted, ref } from 'vue'
 import UserList from "../components/UserList.vue"
+import MyButton from "@/components/UI/MyButton.vue"
 import axios from 'axios'
 import type User from "@/types/User"
 export default defineComponent({
   name: 'UsersView',
-  components: {UserList},
+  components: {
+    UserList,
+    MyButton
+  },
   setup() {
     const users = ref<User[]>([])
     onMounted(async () => {
@@ -47,15 +51,6 @@ export default defineComponent({
     font-size: 40px;
     line-height: 48px;
     color: #000000;
-  }
-  .create__btn {
-    box-sizing: border-box;
-    padding: 8px 16px;
-    width: 110px;
-    height: 40px;
-    border: 1px solid #000000;
-    font-size: 14px;
-    line-height: 24px;
   }
 
 </style>
